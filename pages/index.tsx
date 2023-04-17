@@ -71,7 +71,7 @@ const Home =({pageInfo,socials,skills,projects}: Props) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchPageInfo();
   const skills: Skill[] = await fetchSkills();
   const projects: Project[] = await fetchProjects();
@@ -84,7 +84,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
       projects,
     },
     //nextjs will regenerate the page every 10 second when a request comes in,
-    //revalidate: 10,
+    revalidate: 10,
   };
 
 }
